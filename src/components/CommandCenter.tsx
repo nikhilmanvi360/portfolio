@@ -19,38 +19,38 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ setActiveTab, onOp
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-4">
         {/* Left: Info */}
         <div className="lg:col-span-7 space-y-5">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded bg-rose-950/60 border border-rose-800/40 text-rose-300 text-xs font-bold">
-            <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
-            <span>SOC ANALYST L1 · BANGALORE, INDIA</span>
+          <div className="inline-flex max-w-full items-center space-x-2 px-3 py-1 rounded bg-rose-950/60 border border-rose-800/40 text-rose-300 text-[11px] sm:text-xs font-bold">
+            <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse shrink-0" />
+            <span className="truncate">SOC ANALYST L1 · BANGALORE, INDIA</span>
           </div>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3 sm:space-x-4">
             <img
               src={profilePic}
               alt="Nikhil Profile Picture"
               referrerPolicy="no-referrer"
-              className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl border-2 border-rose-500/60 object-cover shadow-lg shadow-rose-950/40 shrink-0"
+              className="w-14 h-14 sm:w-20 sm:h-20 rounded-xl border-2 border-rose-500/60 object-cover shadow-lg shadow-rose-950/40 shrink-0"
             />
-            <div className="space-y-1">
-              <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-100 tracking-tight">
+            <div className="space-y-0.5 sm:space-y-1 min-w-0">
+              <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-100 tracking-tight">
                 NIKHIL
               </h1>
-              <p className="text-sm sm:text-lg font-bold text-emerald-400">
+              <p className="text-xs sm:text-lg font-bold text-emerald-400 leading-snug">
                 Cybersecurity & AI Security Operations
               </p>
             </div>
           </div>
 
-          <p className="text-sm text-slate-300 font-sans leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
             BCA candidate specializing in real-time SIEM alert triage, log correlation, incident response, and AI-driven threat automation. Built with hands-on lab experience and SOC disciplines.
           </p>
 
           {/* Role Pills */}
-          <div className="flex flex-wrap gap-2 pt-1">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-1">
             {TARGET_ROLES.map((role, idx) => (
               <span
                 key={idx}
-                className="px-2.5 py-1 text-[11px] bg-slate-900 text-slate-300 border border-slate-800 rounded"
+                className="px-2.5 py-1 text-[10px] sm:text-[11px] bg-slate-900 text-slate-300 border border-slate-800 rounded"
               >
                 {role}
               </span>
@@ -58,10 +58,10 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ setActiveTab, onOp
           </div>
 
           {/* Action CTAs */}
-          <div className="flex flex-wrap gap-3 pt-2">
+          <div className="flex flex-wrap gap-2.5 sm:gap-3 pt-2">
             <button
               onClick={() => setActiveTab("project-labs")}
-              className="px-4 py-2.5 text-xs font-bold rounded bg-rose-600 hover:bg-rose-500 text-white transition-all flex items-center space-x-2 shadow-lg shadow-rose-950/50"
+              className="w-full sm:w-auto min-h-[44px] px-4 py-2.5 text-xs font-bold rounded bg-rose-600 hover:bg-rose-500 text-white transition-all flex items-center justify-center space-x-2 shadow-lg shadow-rose-950/50"
             >
               <Terminal className="w-4 h-4" />
               <span>Explore Projects</span>
@@ -69,7 +69,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ setActiveTab, onOp
 
             <button
               onClick={downloadResume}
-              className="px-4 py-2.5 text-xs font-bold rounded bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 transition-all flex items-center space-x-2"
+              className="flex-1 sm:flex-initial min-h-[44px] px-4 py-2.5 text-xs font-bold rounded bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 transition-all flex items-center justify-center space-x-2"
             >
               <Download className="w-4 h-4 text-slate-400" />
               <span>Download Resume</span>
@@ -77,7 +77,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ setActiveTab, onOp
 
             <button
               onClick={onOpenContact}
-              className="px-4 py-2.5 text-xs font-bold rounded bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition-all flex items-center space-x-2"
+              className="flex-1 sm:flex-initial min-h-[44px] px-4 py-2.5 text-xs font-bold rounded bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition-all flex items-center justify-center space-x-2"
             >
               <Mail className="w-4 h-4 text-rose-400" />
               <span>Contact</span>

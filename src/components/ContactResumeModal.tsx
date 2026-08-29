@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PERSONAL_INFO } from "../data/portfolioData";
 import { X, Mail, Github, Linkedin, MapPin, Download, Check, Send, ShieldAlert, Sparkles } from "lucide-react";
 import { downloadResume } from "../utils/resumeGenerator";
@@ -12,6 +12,17 @@ export const ContactResumeModal: React.FC<ContactResumeModalProps> = ({ isOpen, 
   const [copiedEmail, setCopiedEmail] = useState<boolean>(false);
   const [formState, setFormState] = useState({ name: "", company: "", role: "", message: "" });
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -28,11 +39,12 @@ export const ContactResumeModal: React.FC<ContactResumeModalProps> = ({ isOpen, 
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-[#0B101D] border border-slate-800 rounded-xl max-w-xl w-full max-h-[90vh] overflow-y-auto p-6 space-y-6 text-slate-100 relative shadow-2xl animate-fadeIn">
+    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
+      <div className="bg-[#0B101D] border border-slate-800 rounded-xl max-w-xl w-full max-h-[90vh] overflow-y-auto p-4 sm:p-6 space-y-5 sm:space-y-6 text-slate-100 relative shadow-2xl animate-fadeIn">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-slate-400 hover:text-white p-1 rounded-lg bg-slate-900 border border-slate-800"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 text-slate-400 hover:text-white w-10 h-10 flex items-center justify-center rounded-lg bg-slate-900 border border-slate-800 transition-colors"
+          aria-label="Close modal"
         >
           <X className="w-5 h-5" />
         </button>
@@ -102,7 +114,7 @@ export const ContactResumeModal: React.FC<ContactResumeModalProps> = ({ isOpen, 
                   value={formState.name}
                   onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                   placeholder="e.g. Sarah Jenkins"
-                  className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded text-slate-100 focus:outline-none focus:border-emerald-500"
+                  className="w-full p-2.5 text-base sm:text-xs bg-slate-900 border border-slate-800 rounded text-slate-100 focus:outline-none focus:border-emerald-500"
                 />
               </div>
 
@@ -113,7 +125,7 @@ export const ContactResumeModal: React.FC<ContactResumeModalProps> = ({ isOpen, 
                   value={formState.company}
                   onChange={(e) => setFormState({ ...formState, company: e.target.value })}
                   placeholder="e.g. CyberSec Operations Inc"
-                  className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded text-slate-100 focus:outline-none focus:border-emerald-500"
+                  className="w-full p-2.5 text-base sm:text-xs bg-slate-900 border border-slate-800 rounded text-slate-100 focus:outline-none focus:border-emerald-500"
                 />
               </div>
             </div>
@@ -125,7 +137,7 @@ export const ContactResumeModal: React.FC<ContactResumeModalProps> = ({ isOpen, 
                 value={formState.role}
                 onChange={(e) => setFormState({ ...formState, role: e.target.value })}
                 placeholder="e.g. SOC L1 Interview / Security Internship / Project Collaboration"
-                className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded text-slate-100 focus:outline-none focus:border-emerald-500"
+                className="w-full p-2.5 text-base sm:text-xs bg-slate-900 border border-slate-800 rounded text-slate-100 focus:outline-none focus:border-emerald-500"
               />
             </div>
 
@@ -137,13 +149,13 @@ export const ContactResumeModal: React.FC<ContactResumeModalProps> = ({ isOpen, 
                 value={formState.message}
                 onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                 placeholder="Share role details or questions for Nikhil..."
-                className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded text-slate-100 focus:outline-none focus:border-emerald-500"
+                className="w-full p-2.5 text-base sm:text-xs bg-slate-900 border border-slate-800 rounded text-slate-100 focus:outline-none focus:border-emerald-500"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full py-2.5 font-bold rounded bg-emerald-600 hover:bg-emerald-500 text-white transition-colors flex items-center justify-center space-x-2"
+              className="w-full min-h-[44px] py-2.5 font-bold rounded bg-emerald-600 hover:bg-emerald-500 text-white transition-colors flex items-center justify-center space-x-2"
             >
               <Send className="w-4 h-4" />
               <span>TRANSMIT DISPATCH MESSAGE</span>

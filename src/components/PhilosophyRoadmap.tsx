@@ -27,15 +27,15 @@ export const PhilosophyRoadmap: React.FC = () => {
           <span>[01] THE TECHNICAL PHILOSOPHY</span>
         </div>
 
-        <div className="text-2xl md:text-3xl font-extrabold text-slate-100 font-mono tracking-tight text-center py-4 bg-slate-900/80 rounded-xl border border-slate-800">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-lg sm:text-2xl md:text-3xl font-extrabold text-slate-100 font-mono tracking-tight text-center py-4 px-2 bg-slate-900/80 rounded-xl border border-slate-800">
           <span className="text-emerald-400">LEARN</span>
-          <span className="text-slate-600 px-2">→</span>
+          <span className="text-slate-600">→</span>
           <span className="text-cyan-400">BUILD</span>
-          <span className="text-slate-600 px-2">→</span>
+          <span className="text-slate-600">→</span>
           <span className="text-rose-400">BREAK</span>
-          <span className="text-slate-600 px-2">→</span>
+          <span className="text-slate-600">→</span>
           <span className="text-amber-400">ANALYZE</span>
-          <span className="text-slate-600 px-2">→</span>
+          <span className="text-slate-600">→</span>
           <span className="text-emerald-300">IMPROVE</span>
         </div>
 

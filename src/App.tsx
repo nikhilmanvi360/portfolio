@@ -13,7 +13,7 @@ export default function App() {
   const [isContactOpen, setIsContactOpen] = useState<boolean>(false);
 
   return (
-    <div className="min-h-screen mr-robot-bg text-slate-100 font-mono antialiased flex flex-col selection:bg-rose-600 selection:text-white">
+    <div className="min-h-screen max-w-full overflow-x-hidden mr-robot-bg text-slate-100 font-mono antialiased flex flex-col selection:bg-rose-600 selection:text-white">
       {/* Top Header Navigation */}
       <Header
         activeTab={activeTab}

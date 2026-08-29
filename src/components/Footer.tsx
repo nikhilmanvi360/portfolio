@@ -31,11 +31,17 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
             <span>{PERSONAL_INFO.philosophy}</span>
           </div>
 
-          <div className="flex items-center space-x-4">
-            <button onClick={onOpenContact} className="hover:text-emerald-400 transition-colors">
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-3">
+            <button
+              onClick={onOpenContact}
+              className="min-h-[38px] px-3 py-1.5 rounded bg-slate-900 border border-slate-800/80 hover:text-emerald-400 text-slate-300 transition-colors flex items-center justify-center font-bold"
+            >
               Dispatch Contact
             </button>
-            <a href={`mailto:${PERSONAL_INFO.email}`} className="hover:text-emerald-400 transition-colors">
+            <a
+              href={`mailto:${PERSONAL_INFO.email}`}
+              className="min-h-[38px] px-3 py-1.5 rounded bg-slate-900 border border-slate-800/80 hover:text-emerald-400 text-slate-300 transition-colors flex items-center justify-center truncate max-w-[260px] sm:max-w-none"
+            >
               {PERSONAL_INFO.email}
             </a>
           </div>

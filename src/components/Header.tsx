@@ -71,34 +71,35 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center space-x-2 shrink-0">
           <button
             onClick={downloadResume}
-            className="px-3 py-1.5 text-xs font-bold rounded bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition-colors hidden sm:flex items-center space-x-1.5"
+            className="min-h-[38px] px-3 py-1.5 text-xs font-bold rounded bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition-colors flex items-center space-x-1.5"
+            title="Download Resume"
           >
-            <Download className="w-3.5 h-3.5 text-rose-400" />
-            <span>Resume</span>
+            <Download className="w-3.5 h-3.5 text-rose-400 shrink-0" />
+            <span className="hidden xs:inline">Resume</span>
           </button>
 
           <button
             onClick={onOpenContact}
-            className="px-3.5 py-1.5 text-xs font-bold rounded bg-rose-600 hover:bg-rose-500 text-white transition-colors flex items-center space-x-1.5"
+            className="min-h-[38px] px-3.5 py-1.5 text-xs font-bold rounded bg-rose-600 hover:bg-rose-500 text-white transition-colors flex items-center space-x-1.5 shadow-sm"
           >
-            <Mail className="w-3.5 h-3.5" />
+            <Mail className="w-3.5 h-3.5 shrink-0" />
             <span>Contact</span>
           </button>
         </div>
       </div>
 
       {/* Mobile Nav Bar */}
-      <nav className="md:hidden flex items-center space-x-1 overflow-x-auto scrollbar-none px-4 py-2 border-t border-slate-800/80 text-xs">
+      <nav className="md:hidden flex items-center space-x-1.5 overflow-x-auto scrollbar-none px-4 py-2 border-t border-slate-800/80 text-xs">
         {navItems.map((item) => {
           const isActive = activeTab === item.id;
           return (
             <button
               key={item.id}
               onClick={() => setActiveTab(item.id)}
-              className={`whitespace-nowrap px-3 py-1 rounded transition-colors ${
+              className={`whitespace-nowrap px-3.5 py-2 min-h-[40px] rounded-lg transition-colors flex items-center justify-center font-semibold text-xs ${
                 isActive
-                  ? "bg-rose-950 text-rose-300 border border-rose-700/60 font-bold"
-                  : "text-slate-400 hover:text-slate-200"
+                  ? "bg-rose-950 text-rose-300 border border-rose-700/60 font-bold shadow-sm"
+                  : "bg-slate-900/40 text-slate-400 hover:text-slate-200 border border-slate-800/50"
               }`}
             >
               {item.label}

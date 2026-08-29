@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PROJECTS } from "../data/portfolioData";
 import { Project } from "../types";
 import { Terminal, ShieldAlert, Cpu, FileSearch, Layers, CheckCircle2, X, Skull } from "lucide-react";
@@ -6,6 +6,17 @@ import { Terminal, ShieldAlert, Cpu, FileSearch, Layers, CheckCircle2, X, Skull 
 export const ProjectLabs: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
   const [activeModalProject, setActiveModalProject] = useState<Project | null>(null);
+
+  useEffect(() => {
+    if (activeModalProject) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [activeModalProject]);
 
   const categories = ["ALL", "AI & ML Security", "Cybersecurity & SOC", "Interactive Cyber Game", "Research & IoT", "Software Engineering"];
 
@@ -42,14 +53,14 @@ export const ProjectLabs: React.FC = () => {
         </div>
 
         {/* Filter Pills */}
-        <div className="flex flex-wrap gap-1.5 text-xs">
+        <div className="flex flex-wrap gap-1.5 sm:gap-2 text-xs">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3 py-1.5 rounded transition-colors ${
+              className={`min-h-[38px] px-3.5 py-2 rounded-lg transition-colors font-medium ${
                 selectedCategory === cat
-                  ? "bg-rose-600 text-white font-bold shadow"
+                  ? "bg-rose-600 text-white font-bold shadow-md"
                   : "bg-slate-900 text-slate-400 hover:text-slate-200 border border-slate-800"
               }`}
             >
@@ -137,7 +148,7 @@ export const ProjectLabs: React.FC = () => {
 
               <button
                 onClick={() => setActiveModalProject(project)}
-                className="w-full sm:w-auto px-3.5 py-1.5 text-xs font-bold bg-[#0A1020] hover:bg-[#121A30] text-rose-400 border border-rose-600/40 rounded transition-colors flex items-center justify-center space-x-1.5 shrink-0"
+                className="w-full sm:w-auto min-h-[44px] px-4 py-2 text-xs font-bold bg-[#0A1020] hover:bg-[#121A30] text-rose-400 border border-rose-600/40 rounded-lg transition-colors flex items-center justify-center space-x-1.5 shrink-0"
               >
                 <Layers className="w-3.5 h-3.5" />
                 <span>INSPECT BLUEPRINT</span>
@@ -149,11 +160,12 @@ export const ProjectLabs: React.FC = () => {
 
       {/* Blueprint Detail Modal */}
       {activeModalProject && (
-        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-[#050812] border border-rose-600/50 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 space-y-6 text-slate-100 relative shadow-2xl font-mono">
+        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4">
+          <div className="bg-[#050812] border border-rose-600/50 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-4 sm:p-6 space-y-5 sm:space-y-6 text-slate-100 relative shadow-2xl font-mono">
             <button
               onClick={() => setActiveModalProject(null)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-white p-1 rounded bg-[#0A0F20] border border-slate-800"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 text-slate-400 hover:text-white w-10 h-10 flex items-center justify-center rounded-lg bg-[#0A0F20] border border-slate-800 transition-colors"
+              aria-label="Close modal"
             >
               <X className="w-5 h-5" />
             </button>
