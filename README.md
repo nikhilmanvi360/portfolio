@@ -1,3 +1,3 @@
 Its too  hassle to add readme 
 its just a portfolio 
-i didnt even code thiis shyt
+it aint that diffficult to  code thiis shyt
