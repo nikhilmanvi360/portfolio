@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { PERSONAL_INFO } from "../data/portfolioData";
-import { X, Mail, Github, Linkedin, MapPin, Download, Check, Send, ShieldAlert, Sparkles } from "lucide-react";
+import { X, Mail, MapPin, Download, Check, Send } from "lucide-react";
 import { downloadResume } from "../utils/resumeGenerator";
 
 interface ContactResumeModalProps {
@@ -39,138 +39,136 @@ export const ContactResumeModal: React.FC<ContactResumeModalProps> = ({ isOpen, 
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
-      <div className="bg-[#0B101D] border border-slate-800 rounded-xl max-w-xl w-full max-h-[90vh] overflow-y-auto p-4 sm:p-6 space-y-5 sm:space-y-6 text-slate-100 relative shadow-2xl animate-fadeIn">
+    <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
+      <div className="bg-[#0b0d14] border border-white/10 rounded-2xl max-w-xl w-full max-h-[90vh] overflow-y-auto p-6 space-y-6 text-slate-100 relative shadow-2xl animate-fadeIn">
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 sm:top-4 sm:right-4 text-slate-400 hover:text-white w-10 h-10 flex items-center justify-center rounded-lg bg-slate-900 border border-slate-800 transition-colors"
+          className="absolute top-4 right-4 text-slate-400 hover:text-white w-10 h-10 flex items-center justify-center rounded-lg bg-white/[0.05] border border-white/10 transition-colors"
           aria-label="Close modal"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <div className="space-y-2 border-b border-slate-800 pb-4">
-          <div className="flex items-center space-x-2">
-            <span className="px-2.5 py-1 text-xs font-mono bg-emerald-950 text-emerald-400 border border-emerald-800 rounded font-bold">
-              CONTACT & RECRUITER DISPATCH
-            </span>
+        <div className="space-y-2 border-b border-white/10 pb-4">
+          <div className="text-xs font-mono-tech uppercase tracking-widest text-rose-400">
+            CONTACT & INQUIRIES
           </div>
-          <h3 className="text-2xl font-bold">CONNECT WITH NIKHIL</h3>
-          <p className="text-xs font-mono text-slate-400">
-            Available for SOC L1 Roles, Security Internships & AI Cybersecurity Projects
+          <h3 className="text-2xl font-bold text-white">Connect with Nikhil</h3>
+          <p className="text-xs text-slate-400 font-normal">
+            Available for SOC L1 roles, Security Engineering Internships & Project Collaborations.
           </p>
         </div>
 
-        {/* Quick Contact Badges */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
-          <div className="p-3.5 rounded-lg bg-slate-900 border border-slate-800 space-y-1">
-            <span className="text-slate-500 block text-[10px]">EMAIL ADDRESS:</span>
+        {/* Quick Info Badges */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+          <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 space-y-1">
+            <span className="text-slate-400 text-[10px] font-mono-tech uppercase">DIRECT EMAIL:</span>
             <div className="flex items-center justify-between">
-              <span className="text-emerald-400 font-bold truncate">{PERSONAL_INFO.email}</span>
+              <span className="text-white font-semibold truncate">{PERSONAL_INFO.email}</span>
               <button
                 onClick={handleCopyEmail}
-                className="text-[10px] px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
+                className="text-[10px] font-mono-tech px-2 py-1 rounded bg-white/[0.06] hover:bg-white/[0.12] text-slate-300 transition-colors shrink-0"
               >
-                {copiedEmail ? <Check className="w-3 h-3 text-emerald-400" /> : "COPY"}
+                {copiedEmail ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : "COPY"}
               </button>
             </div>
           </div>
 
-          <div className="p-3.5 rounded-lg bg-slate-900 border border-slate-800 space-y-1">
-            <span className="text-slate-500 block text-[10px]">LOCATION / AVAILABILITY:</span>
+          <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 space-y-1">
+            <span className="text-slate-400 text-[10px] font-mono-tech uppercase">LOCATION:</span>
             <div className="flex items-center space-x-1.5 text-slate-200">
-              <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+              <MapPin className="w-3.5 h-3.5 text-rose-400 shrink-0" />
               <span className="truncate">{PERSONAL_INFO.location}</span>
             </div>
           </div>
         </div>
 
-        {/* Resume Download Action */}
-        <div className="p-4 rounded-lg bg-emerald-950/40 border border-emerald-800/60 flex flex-wrap items-center justify-between gap-3 font-mono">
+        {/* Resume Action */}
+        <div className="p-4 rounded-xl bg-rose-950/20 border border-rose-800/30 flex items-center justify-between gap-3 text-xs">
           <div>
-            <h4 className="text-sm font-bold text-slate-100">DOWNLOAD RESUME SPECIFICATION</h4>
-            <p className="text-[11px] text-emerald-300">Generate formatted SOC Analyst profile text file</p>
+            <h4 className="font-bold text-white">Formatted Resume Specification</h4>
+            <p className="text-slate-400 text-xs font-normal">Download complete candidate profile document</p>
           </div>
           <button
             onClick={downloadResume}
-            className="px-4 py-2 text-xs font-bold rounded bg-emerald-600 hover:bg-emerald-500 text-white transition-colors flex items-center space-x-1.5 shadow"
+            className="px-4 py-2 text-xs font-semibold rounded-lg bg-rose-600 hover:bg-rose-500 text-white transition-all flex items-center space-x-1.5 shrink-0"
           >
             <Download className="w-3.5 h-3.5" />
-            <span>DOWNLOAD RESUME</span>
+            <span>Download</span>
           </button>
         </div>
 
-        {/* Dispatch Form */}
+        {/* Dispatch Message Form */}
         {!isSubmitted ? (
-          <form onSubmit={handleSubmitForm} className="space-y-4 font-mono text-xs">
-            <h4 className="font-bold text-slate-200 uppercase">SEND RECRUITER / INQUIRY MESSAGE:</h4>
+          <form onSubmit={handleSubmitForm} className="space-y-4 text-xs font-normal">
+            <div className="text-xs font-mono-tech uppercase text-slate-400">SEND DISPATCH MESSAGE:</div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="text-slate-400 block mb-1">YOUR NAME / RECRUITER NAME *</label>
+                <label className="text-slate-300 block mb-1">Your Name *</label>
                 <input
                   type="text"
                   required
                   value={formState.name}
                   onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                   placeholder="e.g. Sarah Jenkins"
-                  className="w-full p-2.5 text-base sm:text-xs bg-slate-900 border border-slate-800 rounded text-slate-100 focus:outline-none focus:border-emerald-500"
+                  className="w-full p-2.5 text-sm bg-white/[0.04] border border-white/10 rounded-lg text-white focus:outline-none focus:border-rose-500"
                 />
               </div>
 
               <div>
-                <label className="text-slate-400 block mb-1">COMPANY / ORGANIZATION</label>
+                <label className="text-slate-300 block mb-1">Company / Organization</label>
                 <input
                   type="text"
                   value={formState.company}
                   onChange={(e) => setFormState({ ...formState, company: e.target.value })}
-                  placeholder="e.g. CyberSec Operations Inc"
-                  className="w-full p-2.5 text-base sm:text-xs bg-slate-900 border border-slate-800 rounded text-slate-100 focus:outline-none focus:border-emerald-500"
+                  placeholder="e.g. CyberSec Inc"
+                  className="w-full p-2.5 text-sm bg-white/[0.04] border border-white/10 rounded-lg text-white focus:outline-none focus:border-rose-500"
                 />
               </div>
             </div>
 
             <div>
-              <label className="text-slate-400 block mb-1">ROLE / PURPOSE</label>
+              <label className="text-slate-300 block mb-1">Subject / Role</label>
               <input
                 type="text"
                 value={formState.role}
                 onChange={(e) => setFormState({ ...formState, role: e.target.value })}
-                placeholder="e.g. SOC L1 Interview / Security Internship / Project Collaboration"
-                className="w-full p-2.5 text-base sm:text-xs bg-slate-900 border border-slate-800 rounded text-slate-100 focus:outline-none focus:border-emerald-500"
+                placeholder="e.g. SOC Analyst L1 Opportunity / Security Project"
+                className="w-full p-2.5 text-sm bg-white/[0.04] border border-white/10 rounded-lg text-white focus:outline-none focus:border-rose-500"
               />
             </div>
 
             <div>
-              <label className="text-slate-400 block mb-1">DISPATCH MESSAGE *</label>
+              <label className="text-slate-300 block mb-1">Message *</label>
               <textarea
                 required
                 rows={3}
                 value={formState.message}
                 onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                 placeholder="Share role details or questions for Nikhil..."
-                className="w-full p-2.5 text-base sm:text-xs bg-slate-900 border border-slate-800 rounded text-slate-100 focus:outline-none focus:border-emerald-500"
+                className="w-full p-2.5 text-sm bg-white/[0.04] border border-white/10 rounded-lg text-white focus:outline-none focus:border-rose-500"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full min-h-[44px] py-2.5 font-bold rounded bg-emerald-600 hover:bg-emerald-500 text-white transition-colors flex items-center justify-center space-x-2"
+              className="w-full min-h-[44px] py-3 text-xs font-semibold rounded-lg bg-rose-600 hover:bg-rose-500 text-white transition-all flex items-center justify-center space-x-2 shadow-md"
             >
               <Send className="w-4 h-4" />
-              <span>TRANSMIT DISPATCH MESSAGE</span>
+              <span>Send Message</span>
             </button>
           </form>
         ) : (
-          <div className="p-6 rounded-lg bg-slate-900 border border-emerald-500 text-center space-y-3 font-mono">
-            <Check className="w-8 h-8 text-emerald-400 mx-auto" />
-            <h4 className="text-lg font-bold text-slate-100">DISPATCH TRANSMITTED</h4>
+          <div className="p-6 rounded-xl bg-white/[0.03] border border-rose-500/40 text-center space-y-3">
+            <Check className="w-8 h-8 text-rose-400 mx-auto" />
+            <h4 className="text-lg font-bold text-white">Message Transmitted</h4>
             <p className="text-xs text-slate-300">
-              Thank you {formState.name}. Your message has been routed to Nikhil. He will respond promptly via email at {PERSONAL_INFO.email}.
+              Thank you, {formState.name}. Your message has been routed to Nikhil. He will respond promptly via email at {PERSONAL_INFO.email}.
             </p>
             <button
               onClick={() => setIsSubmitted(false)}
-              className="px-4 py-2 text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 rounded"
+              className="px-4 py-2 text-xs font-semibold bg-white/[0.06] hover:bg-white/[0.12] text-slate-200 rounded-lg"
             >
               Send Another Message
             </button>

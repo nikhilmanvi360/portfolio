@@ -1,6 +1,5 @@
 import React from "react";
 import { PERSONAL_INFO } from "../data/portfolioData";
-import { Shield, Terminal, Mail, Radar, Github } from "lucide-react";
 
 interface FooterProps {
   onOpenContact: () => void;
@@ -8,39 +7,36 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
   return (
-    <footer className="mt-16 bg-[#090D16] border-t border-slate-800/80 text-slate-400 font-mono text-xs py-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 pb-6 border-b border-slate-800">
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 rounded-lg bg-emerald-950 border border-emerald-800 text-emerald-400 flex items-center justify-center">
-              <Radar className="w-4 h-4" />
-            </div>
-            <div>
-              <span className="font-bold text-slate-100 text-sm">NIKHIL</span>
-              <span className="text-slate-500 text-xs block">SOC Analyst & AI Security Researcher</span>
+    <footer className="mt-28 border-t border-white/10 text-slate-400 text-xs py-12 font-sans">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8 space-y-8">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-white/10">
+          <div className="space-y-1 font-heading">
+            <div className="text-lg font-black text-white uppercase tracking-wider">NIKHIL MANVI</div>
+            <div className="text-xs font-mono-tech text-rose-500 lowercase">
+              gadag & bangalore, india
             </div>
           </div>
 
-          <p className="text-slate-400 text-center md:text-right text-[11px] max-w-md">
-            "{PERSONAL_INFO.tagline}"
+          <p className="text-slate-300 text-xs max-w-md font-normal leading-relaxed">
+            I spend most of my time trying to figure out why machines do stupid things.
           </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px]">
-          <div>
-            <span>{PERSONAL_INFO.philosophy}</span>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono-tech">
+          <div className="text-slate-500">
+            © {new Date().getFullYear()} Nikhil Manvi
           </div>
 
-          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-3">
+          <div className="flex items-center space-x-6">
             <button
               onClick={onOpenContact}
-              className="min-h-[38px] px-3 py-1.5 rounded bg-slate-900 border border-slate-800/80 hover:text-emerald-400 text-slate-300 transition-colors flex items-center justify-center font-bold"
+              className="text-slate-300 hover:text-white transition-colors"
             >
-              Dispatch Contact
+              contact →
             </button>
             <a
               href={`mailto:${PERSONAL_INFO.email}`}
-              className="min-h-[38px] px-3 py-1.5 rounded bg-slate-900 border border-slate-800/80 hover:text-emerald-400 text-slate-300 transition-colors flex items-center justify-center truncate max-w-[260px] sm:max-w-none"
+              className="text-rose-400 hover:text-rose-300 transition-colors"
             >
               {PERSONAL_INFO.email}
             </a>

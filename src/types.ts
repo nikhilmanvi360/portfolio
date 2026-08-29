@@ -1,24 +1,32 @@
 export type ActiveTab =
   | "command-center"
-  | "experience-skills"
   | "project-labs"
-  | "philosophy-roadmap"
-  | "contact-resume";
+  | "experience-skills"
+  | "philosophy-roadmap";
 
 export interface Project {
   id: string;
+  caseNumber?: string;
   title: string;
-  tagline: string;
-  category: "Cybersecurity & SOC" | "AI & ML Security" | "Interactive Cyber Game" | "Research & IoT" | "Software Engineering";
+  category: string;
+  status: string;
   shortDescription: string;
+  tagline: string;
   fullDescription: string;
   architectureComponents: string[];
-  techStack: string[];
   securityValue: string;
-  mitreTags?: string[];
+  techStack: string[];
   featured?: boolean;
-  status: "ACTIVE" | "RESEARCH" | "PROTOTYPE" | "COMPLETED";
-  iconName: string;
+  mitreTechniques?: string[];
+  mitreTags?: string[];
+  iconName?: string;
+  githubUrl?: string;
+  liveUrl?: string;
+  // Case File Case Study Sections
+  question?: string;
+  approach?: string;
+  result?: string;
+  learned?: string;
 }
 
 export interface SocExperienceItem {
@@ -26,10 +34,24 @@ export interface SocExperienceItem {
   role: string;
   organization: string;
   period: string;
-  type: string;
+  type?: string;
   summary: string;
   keyResponsibilities: string[];
   domainsMastered: string[];
-  workflowsUsed: string[];
+  workflowsUsed?: string[];
 }
 
+export interface SkillCategory {
+  name: string;
+  skills: string[];
+}
+
+export interface FieldNote {
+  id: string;
+  noteNumber: string;
+  title: string;
+  date: string;
+  category: string;
+  content: string;
+  takeaway: string;
+}

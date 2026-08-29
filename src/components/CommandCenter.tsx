@@ -1,7 +1,7 @@
 import React from "react";
-import { PERSONAL_INFO, TARGET_ROLES, PROJECTS } from "../data/portfolioData";
+import { PROJECTS, FIELD_NOTES, SOC_EXPERIENCE, PERSONAL_INFO } from "../data/portfolioData";
 import { ActiveTab } from "../types";
-import { Shield, Cpu, Terminal, ArrowRight, ExternalLink, Download, Mail } from "lucide-react";
+import { ArrowUpRight, Github, Mail, ArrowRight } from "lucide-react";
 import { downloadResume } from "../utils/resumeGenerator";
 
 import mrRobotBanner from "../assets/images/mr_robot_hero_banner_1787750216135.jpg";
@@ -13,140 +13,389 @@ interface CommandCenterProps {
 }
 
 export const CommandCenter: React.FC<CommandCenterProps> = ({ setActiveTab, onOpenContact }) => {
-  return (
-    <div className="space-y-12 animate-fadeIn font-mono">
-      {/* Sleek Hero Section */}
-      <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-4">
-        {/* Left: Info */}
-        <div className="lg:col-span-7 space-y-5">
-          <div className="inline-flex max-w-full items-center space-x-2 px-3 py-1 rounded bg-rose-950/60 border border-rose-800/40 text-rose-300 text-[11px] sm:text-xs font-bold">
-            <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse shrink-0" />
-            <span className="truncate">SOC ANALYST L1 · BANGALORE, INDIA</span>
-          </div>
+  const mainProjects = PROJECTS.filter((p) => p.featured);
+  const proj1 = mainProjects[0]; // AI SIEM Copilot
+  const proj2 = mainProjects[1]; // Hybrid ML IDS
+  const proj3 = mainProjects[2]; // MITRE ATT&CK Game
+  const proj4 = mainProjects[3]; // Phantom Key C2
 
-          <div className="flex items-center space-x-3 sm:space-x-4">
-            <img
-              src={profilePic}
-              alt="Nikhil Profile Picture"
-              referrerPolicy="no-referrer"
-              className="w-14 h-14 sm:w-20 sm:h-20 rounded-xl border-2 border-rose-500/60 object-cover shadow-lg shadow-rose-950/40 shrink-0"
-            />
-            <div className="space-y-0.5 sm:space-y-1 min-w-0">
-              <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-100 tracking-tight">
-                NIKHIL
+  return (
+    <div className="space-y-24 sm:space-y-36 animate-fadeIn font-sans py-4 sm:py-8">
+      {/* 
+        ==================================================
+        UNCONVENTIONAL EDITORIAL HERO
+        ==================================================
+      */}
+      <section className="pt-6 sm:pt-14 pb-12 border-b border-white/10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          {/* Left Large Statement */}
+          <div className="lg:col-span-8 space-y-8">
+            <div className="space-y-4">
+              <span className="text-xs font-mono-tech uppercase text-rose-500 tracking-widest block">
+                nikhil manvi / gadag & bangalore
+              </span>
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.05] font-heading">
+                I spend most of my time trying to figure out why machines do stupid things.
               </h1>
-              <p className="text-xs sm:text-lg font-bold text-emerald-400 leading-snug">
-                Cybersecurity & AI Security Operations
-              </p>
+            </div>
+
+            <p className="text-base sm:text-xl text-slate-300 font-normal leading-relaxed max-w-2xl">
+              Currently working across security operations, alert triage, detection engineering, and building automated systems to catch attacks before anyone notices.
+            </p>
+
+            <div className="pt-4 flex flex-wrap items-center gap-6 text-sm font-mono-tech">
+              <button
+                onClick={() => setActiveTab("project-labs")}
+                className="px-6 py-3 bg-rose-600 hover:bg-rose-500 text-white font-semibold transition-colors flex items-center space-x-2"
+              >
+                <span>explore work</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+
+              <button
+                onClick={downloadResume}
+                className="text-slate-300 hover:text-white transition-colors border-b border-slate-500 hover:border-white pb-0.5"
+              >
+                view résumé.pdf
+              </button>
+
+              <button
+                onClick={onOpenContact}
+                className="text-rose-400 hover:text-rose-300 transition-colors"
+              >
+                contact →
+              </button>
             </div>
           </div>
 
-          <p className="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
-            BCA candidate specializing in real-time SIEM alert triage, log correlation, incident response, and AI-driven threat automation. Built with hands-on lab experience and SOC disciplines.
-          </p>
+          {/* Right Column: Real Artifact Image with Edge Frame */}
+          <div className="lg:col-span-4 space-y-4 pt-4 lg:pt-0">
+            <div className="border border-white/15 bg-[#090a0f] p-2 space-y-2">
+              <div className="relative overflow-hidden">
+                <img
+                  src={mrRobotBanner}
+                  alt="Security Laboratory Artifact"
+                  referrerPolicy="no-referrer"
+                  className="w-full h-64 sm:h-72 object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                />
+                <div className="absolute top-2 left-2 bg-black/80 text-[10px] font-mono-tech text-rose-400 px-2 py-0.5 border border-white/10">
+                  ARTIFACT // TELEMETRY LAB
+                </div>
+              </div>
 
-          {/* Role Pills */}
-          <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-1">
-            {TARGET_ROLES.map((role, idx) => (
-              <span
-                key={idx}
-                className="px-2.5 py-1 text-[10px] sm:text-[11px] bg-slate-900 text-slate-300 border border-slate-800 rounded"
-              >
-                {role}
-              </span>
-            ))}
-          </div>
-
-          {/* Action CTAs */}
-          <div className="flex flex-wrap gap-2.5 sm:gap-3 pt-2">
-            <button
-              onClick={() => setActiveTab("project-labs")}
-              className="w-full sm:w-auto min-h-[44px] px-4 py-2.5 text-xs font-bold rounded bg-rose-600 hover:bg-rose-500 text-white transition-all flex items-center justify-center space-x-2 shadow-lg shadow-rose-950/50"
-            >
-              <Terminal className="w-4 h-4" />
-              <span>Explore Projects</span>
-            </button>
-
-            <button
-              onClick={downloadResume}
-              className="flex-1 sm:flex-initial min-h-[44px] px-4 py-2.5 text-xs font-bold rounded bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 transition-all flex items-center justify-center space-x-2"
-            >
-              <Download className="w-4 h-4 text-slate-400" />
-              <span>Download Resume</span>
-            </button>
-
-            <button
-              onClick={onOpenContact}
-              className="flex-1 sm:flex-initial min-h-[44px] px-4 py-2.5 text-xs font-bold rounded bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition-all flex items-center justify-center space-x-2"
-            >
-              <Mail className="w-4 h-4 text-rose-400" />
-              <span>Contact</span>
-            </button>
-          </div>
-        </div>
-
-        {/* Right: Artwork */}
-        <div className="lg:col-span-5">
-          <div className="relative rounded-xl overflow-hidden border border-slate-800 bg-[#070A14] shadow-2xl">
-            <img
-              src={mrRobotBanner}
-              alt="Mr Robot Visual Theme"
-              referrerPolicy="no-referrer"
-              className="w-full h-auto object-cover opacity-90"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#04060A] via-transparent to-transparent opacity-70" />
-            <div className="absolute bottom-3 left-3 right-3 p-2 bg-[#04060A]/90 border border-slate-800/80 rounded text-[11px] text-slate-300 text-center">
-              "Control is an illusion. Defense is proactive."
+              <div className="p-3 bg-white/[0.02] border border-white/5 space-y-2 text-xs font-mono-tech">
+                <div className="flex items-center space-x-3">
+                  <img
+                    src={profilePic}
+                    alt="Nikhil Manvi"
+                    referrerPolicy="no-referrer"
+                    className="w-8 h-8 rounded border border-rose-500/40 object-cover"
+                  />
+                  <div>
+                    <div className="text-white font-bold">Nikhil Manvi</div>
+                    <div className="text-[10px] text-slate-400">Junior Security Analyst</div>
+                  </div>
+                </div>
+                <div className="text-[11px] text-slate-300 border-t border-white/5 pt-2">
+                  "I don't learn security by reading documentation alone. I build it, break it, and investigate the fallout."
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Featured Projects Preview */}
-      <section className="space-y-4">
-        <div className="flex items-center justify-between border-b border-slate-800 pb-2">
-          <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest">
-            FEATURED PROJECTS
+      {/* 
+        ==================================================
+        WHO'S BEHIND THIS (HUMAN PERSONALITY SECTION)
+        ==================================================
+      */}
+      <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start border-b border-white/10 pb-20">
+        <div className="lg:col-span-4 space-y-2">
+          <span className="text-xs font-mono-tech uppercase text-rose-500 tracking-wider">
+            context & mindset
+          </span>
+          <h2 className="text-3xl font-bold text-white font-heading">
+            Who's behind the site?
           </h2>
+        </div>
+
+        <div className="lg:col-span-8 space-y-6 text-slate-300 text-base sm:text-lg leading-relaxed font-normal">
+          <p>
+            I'm a BCA student at KLE's JT BCA College in Gadag, and a Junior Security Analyst at Vijesha IT Service LLP. 
+            I spend an unreasonable amount of time trying to understand what happened inside a machine during an attack.
+          </p>
+          <p>
+            That curiosity led me directly into SOC work. Then SIEM monitoring. Then log correlation. Then detection engineering. Then I realized standard SOC analyst workflows rely too much on manual tab-switching, so I started writing Python scripts and multi-agent AI tools to do the heavy lifting.
+          </p>
+          <div className="pt-2 grid grid-cols-1 sm:grid-cols-3 gap-6 font-mono-tech text-xs border-t border-white/10">
+            <div>
+              <div className="text-rose-400 font-bold mb-1">CURRENT ROLE</div>
+              <div className="text-slate-200">Junior Security Analyst at Vijesha IT</div>
+            </div>
+            <div>
+              <div className="text-rose-400 font-bold mb-1">FOCUS</div>
+              <div className="text-slate-200">SOC Triage, Detection Rules, AI Automation</div>
+            </div>
+            <div>
+              <div className="text-rose-400 font-bold mb-1">LOCATION</div>
+              <div className="text-slate-200">Gadag & Bangalore, India</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 
+        ==================================================
+        I BUILD THINGS (NON-UNIFORM PROJECT COMPOSITIONS)
+        ==================================================
+      */}
+      <section className="space-y-24">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-6">
+          <div>
+            <span className="text-xs font-mono-tech uppercase text-rose-500 tracking-wider">
+              selected projects
+            </span>
+            <h2 className="text-4xl sm:text-5xl font-black text-white font-heading tracking-tight mt-1">
+              Things I've Built.
+            </h2>
+          </div>
           <button
             onClick={() => setActiveTab("project-labs")}
-            className="text-xs text-rose-400 hover:underline font-bold flex items-center space-x-1"
+            className="text-xs font-mono-tech text-rose-400 hover:text-rose-300 flex items-center space-x-1"
           >
-            <span>View All Projects</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <span>view all {PROJECTS.length} projects →</span>
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {PROJECTS.filter((p) => p.featured).map((project) => (
-            <div
-              key={project.id}
-              className="p-4 sm:p-5 rounded-xl bg-[#070B16] border border-slate-800/90 hover:border-slate-700 transition-colors space-y-3 flex flex-col justify-between"
-            >
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-[11px] sm:text-xs">
-                  <span className="text-rose-400 font-bold">{project.category}</span>
-                  <span className="text-slate-500 text-[10px]">{project.status}</span>
-                </div>
-                <h3 className="text-base sm:text-lg font-bold text-slate-100 tracking-tight">{project.title}</h3>
-                <p className="text-xs text-slate-300 font-sans leading-relaxed">{project.shortDescription}</p>
+        {/* 
+          PROJECT 1: Full-Width Asymmetric Headline Layout
+        */}
+        {proj1 && (
+          <article className="space-y-8 border-b border-white/10 pb-20">
+            <div className="flex flex-col lg:flex-row justify-between lg:items-end gap-6">
+              <div className="space-y-2 max-w-3xl">
+                <span className="text-xs font-mono-tech text-rose-500 uppercase">
+                  PROJECT 01 // AI & ML SECURITY
+                </span>
+                <h3 className="text-3xl sm:text-5xl font-bold text-white font-heading leading-tight">
+                  {proj1.title}
+                </h3>
+                <p className="text-base sm:text-lg font-mono-tech text-rose-300">
+                  {proj1.tagline}
+                </p>
               </div>
 
-              <div className="pt-3 border-t border-slate-800/80 flex flex-col sm:flex-row gap-2 sm:items-center justify-between text-xs">
-                <div className="flex flex-wrap gap-1">
-                  {project.techStack.slice(0, 3).map((t, i) => (
-                    <span key={i} className="px-2 py-0.5 text-[10px] bg-slate-900 text-slate-400 rounded">
-                      {t}
+              <div className="shrink-0">
+                <button
+                  onClick={() => setActiveTab("project-labs")}
+                  className="px-5 py-2.5 bg-white/10 hover:bg-white/15 text-white font-mono-tech text-xs transition-colors"
+                >
+                  read full case file →
+                </button>
+              </div>
+            </div>
+
+            {/* Asymmetrical 2-Column Content */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-4">
+              <div className="lg:col-span-7 bg-[#0b0c12] border border-white/10 p-6 sm:p-8 space-y-6">
+                <div>
+                  <div className="text-xs font-mono-tech uppercase text-rose-400 mb-1">
+                    WHAT WAS I TRYING TO FIGURE OUT?
+                  </div>
+                  <p className="text-slate-200 text-sm sm:text-base leading-relaxed italic">
+                    "{proj1.question}"
+                  </p>
+                </div>
+
+                <div>
+                  <div className="text-xs font-mono-tech uppercase text-slate-400 mb-1">
+                    WHAT DID I BUILD & HOW DOES IT WORK?
+                  </div>
+                  <p className="text-slate-300 text-sm leading-relaxed">
+                    {proj1.fullDescription}
+                  </p>
+                </div>
+              </div>
+
+              <div className="lg:col-span-5 bg-white/[0.02] border border-white/10 p-6 sm:p-8 space-y-6 flex flex-col justify-between">
+                <div className="space-y-4">
+                  <div>
+                    <div className="text-xs font-mono-tech uppercase text-rose-400 mb-1">
+                      WHAT WENT WRONG & WHAT I LEARNED
+                    </div>
+                    <p className="text-slate-300 text-sm leading-relaxed">
+                      {proj1.learned}
+                    </p>
+                  </div>
+
+                  <div>
+                    <div className="text-xs font-mono-tech uppercase text-slate-400 mb-1">
+                      OPERATIONAL RESULT
+                    </div>
+                    <p className="text-slate-200 text-sm font-semibold">
+                      {proj1.result}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-white/10 flex flex-wrap gap-2 font-mono-tech text-xs text-slate-400">
+                  {proj1.techStack.map((tech, i) => (
+                    <span key={i} className="px-2 py-0.5 border border-white/10 text-slate-300">
+                      {tech}
                     </span>
                   ))}
                 </div>
-                <button
-                  onClick={() => setActiveTab("project-labs")}
-                  className="text-rose-400 hover:underline flex items-center space-x-1 font-bold self-end sm:self-auto"
-                >
-                  <span>Inspect</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </button>
+              </div>
+            </div>
+          </article>
+        )}
+
+        {/* 
+          PROJECT 2: Text-Heavy Editorial & Architecture Focus Layout
+        */}
+        {proj2 && (
+          <article className="space-y-8 border-b border-white/10 pb-20">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+              <div className="lg:col-span-5 space-y-6">
+                <span className="text-xs font-mono-tech text-rose-500 uppercase">
+                  PROJECT 02 // INTRUSION DETECTION
+                </span>
+                <h3 className="text-3xl sm:text-4xl font-bold text-white font-heading">
+                  {proj2.title}
+                </h3>
+                <p className="text-sm font-mono-tech text-rose-300">
+                  {proj2.tagline}
+                </p>
+                <p className="text-slate-300 text-sm leading-relaxed">
+                  {proj2.approach}
+                </p>
+
+                <div className="p-4 border-l-2 border-rose-500 bg-white/[0.02] text-xs font-mono-tech text-slate-200">
+                  <span className="text-rose-400 font-bold block mb-1">ACCURACY METRIC</span>
+                  {proj2.result}
+                </div>
+              </div>
+
+              <div className="lg:col-span-7 bg-[#0b0c12] border border-white/10 p-6 sm:p-8 space-y-4">
+                <div className="text-xs font-mono-tech uppercase text-slate-400 border-b border-white/10 pb-2 flex justify-between">
+                  <span>SYSTEM ARCHITECTURE DIAGRAM</span>
+                  <span className="text-rose-400">NSL-KDD / CICIDS</span>
+                </div>
+
+                <div className="space-y-3 font-mono-tech text-xs text-slate-300 pt-2">
+                  {proj2.architectureComponents.map((comp, idx) => (
+                    <div key={idx} className="p-3 bg-white/[0.03] border border-white/5 flex items-center space-x-3">
+                      <span className="text-rose-500 font-bold">0{idx + 1}</span>
+                      <span>{comp}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="pt-4 text-xs font-mono-tech text-slate-400">
+                  <span className="text-rose-400 font-bold">LESSON: </span>
+                  {proj2.learned}
+                </div>
+              </div>
+            </div>
+          </article>
+        )}
+
+        {/* 
+          PROJECT 3 & 4: Staggered Side-by-Side Asymmetric Block
+        */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+          {proj3 && (
+            <article className="bg-[#0b0c12] border border-white/10 p-6 sm:p-8 space-y-6 flex flex-col justify-between">
+              <div className="space-y-4">
+                <span className="text-xs font-mono-tech text-rose-500 uppercase">
+                  PROJECT 03 // CYBER GAME & CLI
+                </span>
+                <h3 className="text-2xl font-bold text-white font-heading">
+                  {proj3.title}
+                </h3>
+                <p className="text-xs font-mono-tech text-slate-400">
+                  {proj3.tagline}
+                </p>
+                <p className="text-slate-300 text-sm leading-relaxed">
+                  {proj3.shortDescription}
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-white/10 space-y-3 font-mono-tech text-xs">
+                <div className="text-rose-400 font-bold">MITRE ATT&CK TECHNIQUES COVERED</div>
+                <div className="text-slate-300">{proj3.mitreTechniques?.join("  ·  ")}</div>
+              </div>
+            </article>
+          )}
+
+          {proj4 && (
+            <article className="bg-[#0b0c12] border border-white/10 p-6 sm:p-8 space-y-6 flex flex-col justify-between">
+              <div className="space-y-4">
+                <span className="text-xs font-mono-tech text-rose-500 uppercase">
+                  PROJECT 04 // DEFENSIVE RESEARCH
+                </span>
+                <h3 className="text-2xl font-bold text-white font-heading">
+                  {proj4.title}
+                </h3>
+                <p className="text-xs font-mono-tech text-slate-400">
+                  {proj4.tagline}
+                </p>
+                <p className="text-slate-300 text-sm leading-relaxed">
+                  {proj4.fullDescription}
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-white/10 space-y-3 font-mono-tech text-xs">
+                <div className="text-rose-400 font-bold">KEY LESSON</div>
+                <div className="text-slate-300">{proj4.learned}</div>
+              </div>
+            </article>
+          )}
+        </div>
+      </section>
+
+      {/* 
+        ==================================================
+        FIELD NOTES & ESSAYS (EDITORIAL JOURNAL LAYOUT)
+        ==================================================
+      */}
+      <section className="space-y-12 border-t border-white/10 pt-16">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-4">
+          <div>
+            <span className="text-xs font-mono-tech uppercase text-rose-500 tracking-wider">
+              field notes & observations
+            </span>
+            <h2 className="text-3xl font-bold text-white font-heading mt-1">
+              Security Journal & Thinking
+            </h2>
+          </div>
+          <button
+            onClick={() => setActiveTab("philosophy-roadmap")}
+            className="text-xs font-mono-tech text-rose-400 hover:text-rose-300"
+          >
+            read all research notes →
+          </button>
+        </div>
+
+        <div className="divide-y divide-white/10">
+          {FIELD_NOTES.slice(0, 3).map((note) => (
+            <div
+              key={note.id}
+              onClick={() => setActiveTab("philosophy-roadmap")}
+              className="py-6 group cursor-pointer grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline"
+            >
+              <div className="md:col-span-3 text-xs font-mono-tech text-slate-400">
+                <span className="text-rose-500 font-semibold mr-2">{note.noteNumber}</span>
+                <span>{note.date}</span>
+              </div>
+              <div className="md:col-span-6">
+                <h3 className="text-lg font-bold text-white group-hover:text-rose-400 transition-colors font-heading">
+                  {note.title}
+                </h3>
+              </div>
+              <div className="md:col-span-3 text-xs font-mono-tech text-slate-400 text-right hidden md:block">
+                <span>{note.takeaway}</span>
               </div>
             </div>
           ))}
